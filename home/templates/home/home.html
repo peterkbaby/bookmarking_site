@@ -1,0 +1,37 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+<div class="row justify-content-center mt-5">
+        <div class="col-md-7 text-center">
+            {% if user.is_authenticated %}
+            <h1>Welcome to Bookmarking site</h1>
+            
+            <form style="max-width: 400px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                <label for="title" style="font-weight: bold;" style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" placeholder="Enter title...">Title</label>
+                <input type="text" name="title" id = 'title' style=" background-color: bisque; border-color: black; color: white; padding: 10px 15px; border: none; border-radius: 4px; ">
+            <script  type="text/javascript">
+                $( function() {
+                  $( "#title" ).autocomplete({
+                    source: "{% url 'home' %}"
+                  });
+                } );
+                </script>
+                </form>
+            
+            {% else %}
+                <h1>Welcome to Bookmarking site</h1>
+                <p>Life is fun. But life is also busy. There's a million different things you could be reading or exploring online. But what matters is <u>what</u> you save and revisit. We created <b><i>Bookmarking site</i></b> to help you make sense of all of your digital discoveries and live a life enriched with valuable content. Your new organized online life awaits.</p>
+                <a role="button" class="btn btn-info btn-lg" href="{% url 'signupuser' %}">Start</a>
+
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

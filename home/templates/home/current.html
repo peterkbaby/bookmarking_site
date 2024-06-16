@@ -1,0 +1,31 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            {% if bookss %}
+                 <h1>{{ bookss.count }} Current Bookmark{{ bookss.count|pluralize }}</h1>
+            {% else %}
+                           <h1>Current Bookmarks</h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+        {% if bookss %}
+            <div class="list-group">
+                {% for books in bookss %}
+                    <a href="{% url 'viewbook' books.id %}" class="list-group-item list-group-item-action{% if books.important %} list-group-item-danger{% endif %}"><b>{{ books.title }}</b>{% if books.url %} - {{ books.url|truncatechars:30 }}{% endif %}</a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center">
+                <h2>Looks like you don't have any Bookmarks! Add one.</h2>
+            <br>
+            <a role="button" class="btn btn-primary" href="{% url 'createbook' %}">New Bookmark</a>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
